@@ -2,6 +2,7 @@ package com.example.WhatToDo.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class Chat {
     @JoinTable(name = "chats_users",
             joinColumns = {@JoinColumn(name = "chat_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
-    private List<User>users;
+    private List<User> users;
 
     @OneToMany
-    private List<Message>messages;
+    private List<Message> messages;
 }
