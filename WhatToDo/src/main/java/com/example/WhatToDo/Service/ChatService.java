@@ -5,6 +5,7 @@ import com.example.WhatToDo.entities.User;
 import com.example.WhatToDo.repository.ChatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,7 @@ public class ChatService {
                 filterChats.add(chat);
             }
         }
+        System.out.println("FILTERCHATS " + filterChats);
         return filterChats;
     }
 
