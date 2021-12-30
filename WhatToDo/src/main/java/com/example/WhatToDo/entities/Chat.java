@@ -1,11 +1,14 @@
 package com.example.WhatToDo.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -19,8 +22,20 @@ public class Chat {
     @JoinTable(name = "chats_users",
             joinColumns = {@JoinColumn(name = "chat_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_id")})
-    private List<User> users;
+    private List<User> users = new ArrayList<>();
 
-    @OneToMany
-    private List<Message> messages;
+    @OneToMany(cascade = {CascadeType.ALL})
+    private List<Message> messages = new ArrayList<>();
+
+    public void addUser(User user){
+        users.add(user);
+        user.getChats().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "id=" + id +
+                '}';
+    }
 }
